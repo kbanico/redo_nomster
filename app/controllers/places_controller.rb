@@ -21,7 +21,7 @@ class PlacesController < ApplicationController
 
   def edit
     if current_user != @place.user
-      flash[:danger] = "Not Allowed"
+      flash[:danger] = "You are not allowed to perform that action"
       redirect_to root_path
     end
   end
@@ -35,9 +35,15 @@ class PlacesController < ApplicationController
   end
 
   def destroy
-    @place.destroy
-    flash[:success] = "Place was removed"
-    redirect_to root_path
+    if current_user != @place.user
+      return render text: 'Not Allowed', status: :forbidden
+
+    end
+      @place.destroy
+      flash[:success] = "Place was removed"
+      redirect_to root_path
+
+
   end
 
   private

@@ -15,9 +15,9 @@
           <% end %>
           <%= link_to "Delete", place_path(@place), method: :delete, data: {confirm: "Are you sure you want to delete this?"}, class: "btn btn-outline-danger btn-sm" %>
 
-
+          <br>
           <% if @place.user%>
-          <small><%=place.user.username %></small>
+          <small>Posted By: <%=@place.user.username %></small>
           <% end %>
 
         </div>
