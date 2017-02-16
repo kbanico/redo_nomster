@@ -7,5 +7,5 @@ class User < ApplicationRecord
   validates_presence_of :username
   validates_uniqueness_of :username
 
-  has_many :places
+  has_many :places, dependent: :destroy
 end

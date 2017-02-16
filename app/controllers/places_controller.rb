@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
 
@@ -20,6 +20,10 @@ class PlacesController < ApplicationController
   end
 
   def edit
+    if current_user != @place.user
+      flash[:danger] = "Not Allowed"
+      redirect_to root_path
+    end
   end
 
   def update

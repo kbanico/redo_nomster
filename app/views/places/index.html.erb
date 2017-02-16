@@ -1,5 +1,6 @@
+<div class="row">
 <% @places.each do |place| %>
-<div class="booyah-box col-10 offset-1">
+<!-- <div class="booyah-box col-10 offset-1">
   <h1><%= link_to place.name, place_path(place) %></h1>
   <i><%= place.address %></i> <br> <br>
   <p><%= place.description %></p> <br>
@@ -7,14 +8,39 @@
   <% if place.user%>
     <small><%=place.user.username %></small>
   <% end %>
-</div>
+</div> -->
 
 
+  <div class="col-lg-3 col-md-4 col-sm-6">
+      <article class="card">
+      <header class="title-header">
+        <h3><%=place.name%></h3>
+      </header>
+      <div class="card-block">
+        <div class="img-card">
+          <img src="https://placehold.it/300x250" alt="place" class="w-100" />
+        </div>
+        <p class="tagline card-text text-xs-center"><%= place.description %></p>
+        <p class="tagline card-text text-xs-center"><%= place.address %></p>
+        <%= link_to place_path(place), class: "btn btn-outline-info btn-sm" do %>
+          <i class="fa fa-eye"></i> Read More
+        <% end %>
 
+      <% if place.user%>
+        <small>Posted By: <%=place.user.username %></small>
+      <% end %>
+
+
+      </div>
+
+
+    </article>
+  </div>
 
 
 
 <% end %>
+</div>
 
 <div class="text-center">
   <%= will_paginate @places %>
