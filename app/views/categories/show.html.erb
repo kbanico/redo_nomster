@@ -13,12 +13,12 @@
           <p class="card-text"><i><%= category.address %></i></p>
           <p class="card-text"><%= category.description %></p>
 
-          <%= link_to "Cancel", :back, class: "btn btn-outline-secondary btn-sm" %>
+          <%= link_to "Back", :back, class: "btn btn-outline-secondary btn-sm" %>
           <% if current_user && current_user == category.user %>
           <%= link_to "Edit", edit_place_path(category), class: "btn btn-info btn-sm"  %>
-          <% end %>
-          <%= link_to "Delete", place_path(category), method: :delete, data: {confirm: "Are you sure you want to delete this?"}, class: "btn btn-outline-danger btn-sm" %>
 
+          <%= link_to "Delete", place_path(category), method: :delete, data: {confirm: "Are you sure you want to delete this?"}, class: "btn btn-outline-danger btn-sm" %>
+          <% end %>
           <br>
           <% if category.user%>
           <small>Posted By: <%=category.user.username %></small>
@@ -30,9 +30,10 @@
 
 
       <div class="col-md-2">
-
         <% if category.categories.any? %>
           <p class="lead">Categories</p>
+          <span class="badge badge-warning"><%= link_to "Edit Category", edit_category_path(@category) %></span><br>
+
           <%= render category.categories %>
         <% end %>
       </div>
@@ -49,4 +50,3 @@
 <% end %>
 
 <%= will_paginate @category_places %>
-<%= render "places/"
