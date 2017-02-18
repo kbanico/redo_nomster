@@ -36,6 +36,13 @@
           <i class="fa fa-eye"></i> Read More
         <% end %>
 
+
+      <% if place.categories.any? %>
+      <br>
+        <p>Categories</p>
+        <%= render place.categories %>
+      <% end %>
+      <br>
       <% if place.user%>
         <small>Posted By: <%=place.user.username %></small>
       <% end %>
