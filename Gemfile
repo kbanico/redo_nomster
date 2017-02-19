@@ -61,5 +61,6 @@ gem 'client_side_validations-simple_form'
 gem "geocoder"
 gem "figaro"
 gem 'carrierwave', '~> 1.0'
+gem "fog"
 
 

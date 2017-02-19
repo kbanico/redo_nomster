@@ -136,6 +136,14 @@
 <h1>Add A photo</h1>
 <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
   <%= f.input :picture %>
+  <%= f.input :caption %>
+  <%= f.submit "Add Your Photo", class: "btn btn-primary" %>
+
 <% end %>
 
+
+<% @place.photos.each do |photo| %>
+  <%= image_tag photo.picture %>
+  <%= photo.caption %>
+<% end %>
 
