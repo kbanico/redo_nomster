@@ -5,10 +5,14 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.order('created_at DESC').page(params[:page])
+
   end
 
   def new
     @place = Place.new
+
+
+
   end
 
   def create
@@ -24,6 +28,7 @@ class PlacesController < ApplicationController
 
   def show
     @comment = Comment.new
+    @photo = Photo.new
   end
 
   def edit
