@@ -47,6 +47,14 @@
         <small>Posted By: <%=place.user.username %></small>
       <% end %>
 
+      <br><small>Lastest Comment:</small> <br>
+      <% if place.comments.present? %>
+        <% if place.comments.last.humanized_rating.present? %>
+          <b><%= place.comments.last.humanized_rating %></b> -
+        <% end %>
+        <%= place.comments.last.message %>
+        <small><%= place.comments.last.user.username %></small>
+      <% end %>
 
       </div>
 

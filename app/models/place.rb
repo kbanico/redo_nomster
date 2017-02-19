@@ -1,5 +1,8 @@
 class Place < ApplicationRecord
   belongs_to :user
+  has_many :comments
+
+
   has_many :place_categories
   has_many :categories, through: :place_categories
   self.per_page = 10
