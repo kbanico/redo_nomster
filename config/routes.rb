@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'registrations'}
-  root "places#index"
+  root "static_pages#home"
   resources :places do
     resources :comments, only: :create
     resources :photos, only: :create

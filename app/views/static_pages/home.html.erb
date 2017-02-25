@@ -7,27 +7,9 @@
 
 </div>
 <br>
-<h1 class="text-center">Places On Guam</h1>
+<h1 class="text-center">Latest Places On Guam</h1>
 <div class="row">
 <% @places.each do |place| %>
-
-
-
-
-
-
-
-
-<!-- <div class="booyah-box col-10 offset-1">
-  <h1><%= link_to place.name, place_path(place) %></h1>
-  <i><%= place.address %></i> <br> <br>
-  <p><%= place.description %></p> <br>
-  <p><%= link_to "Read More", place_path(place), class: "btn btn-outline-info" %></p>
-  <% if place.user%>
-    <small><%=place.user.username %></small>
-  <% end %>
-</div> -->
-
 
   <div class="col-lg-3 col-md-4 col-sm-6 place-index">
       <article class="card">
@@ -75,6 +57,4 @@
 <% end %>
 </div>
 
-<div class="text-center">
-  <%= will_paginate @places %>
-</div>
+
