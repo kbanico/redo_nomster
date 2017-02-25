@@ -145,5 +145,10 @@
 <% @place.photos.each do |photo| %>
   <%= image_tag photo.picture %>
   <%= photo.caption %>
+  <% if photo.user %>
+    <b><%= photo.user.username %></b>
+  <% else %>
+    Unknown
+  <% end %>
 <% end %>
 
