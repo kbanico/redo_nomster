@@ -34,7 +34,7 @@ class PlacesController < ApplicationController
   def edit
     if current_user != @place.user
       flash[:danger] = "You are not allowed to perform that action"
-      redirect_to root_path
+      redirect_to places_path
     end
   end
 

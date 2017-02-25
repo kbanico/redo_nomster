@@ -268,6 +268,7 @@
           </div>
         <% end %>
       </div>
+      <% if myPhoto.size > 1 && myPhoto.size != 0 %>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -276,6 +277,7 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
+      <% end %>
     </div>
   </div>
 </div>
@@ -313,4 +315,59 @@
     Unknown
   <% end %>
 <% end %> -->
+
+
+
+
+
+
+
+<% @place.photos.each do |photo| %>
+<div class="posts-wrapper">
+    <div class="posts">
+        <div class="post-head">
+            <div class="thumb-img">
+
+            </div>
+            <div class="user-name">
+                <%= photo.user.username %>
+            </div>
+            <div class="time-ago">
+                added <%= time_ago_in_words(photo.created_at) %> ago
+            </div>
+        </div>
+        <div class="image center-block">
+            <%= image_tag photo.picture, class: "img-fluid" %>
+
+        </div>
+        <div class="post-bottom">
+            <div class="caption">
+                <div class="caption-content">
+                    <div class="user-name">
+                        <%= photo.user.username %>
+                    </div>
+                    <%= photo.caption %>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="comment-like-form row">
+            <div class="like-button col-sm-1">
+                <span class="glyphicon glyphicon-heart-empty"></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<% end %>
+
+
+
+
+
+
 

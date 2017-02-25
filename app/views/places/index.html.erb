@@ -1,13 +1,3 @@
-<div class="jumbotron hero">
-        <h1 class="hero-title">KJ Designs</h1>
-        <p class="hero-subtitle">Stay Chaudi Strong</p>
-        <h2 class="subtitle2">Specializing in service learning, networking, teaching, graphic designs, and web development</h2>
-        <br>
-        <!-- <p><a class="btn btn-primary btn-lg hero-button" role="button" href="#">Learn more</a></p> -->
-
-</div>
-<br>
-<h1 class="text-center">Places On Guam</h1>
 <div class="row">
 <% @places.each do |place| %>
 
@@ -18,18 +8,78 @@
 
 
 
-<!-- <div class="booyah-box col-10 offset-1">
-  <h1><%= link_to place.name, place_path(place) %></h1>
-  <i><%= place.address %></i> <br> <br>
-  <p><%= place.description %></p> <br>
-  <p><%= link_to "Read More", place_path(place), class: "btn btn-outline-info" %></p>
-  <% if place.user%>
-    <small><%=place.user.username %></small>
-  <% end %>
-</div> -->
+<div class="booyah-box col-12 col-sm-10 offset-sm-1">
 
 
-  <div class="col-lg-3 col-md-4 col-sm-6 place-index">
+
+
+
+
+
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <h1><%= link_to place.name, place_path(place) %></h1>
+      <i><%= place.address %></i> <br> <br>
+      <p><%= place.description %></p> <br>
+      <p>
+        <%= link_to place_path(place), class: "btn btn-outline-info" do %>
+          <i class="fa fa-eye"></i> View Info
+        <% end %>
+
+      </p>
+      <% if place.user%>
+        <small>Posted By: <%=place.user.username %></small>
+      <% end %>
+
+       <% if place.categories.any? %>
+      <br>
+        <p>Categories</p>
+        <%= render place.categories %>
+      <% end %>
+
+    </div>
+
+
+    <div class="col-12 col-sm-6">
+        <% if place.photos.present? %>
+       <!-- <div class="row"> -->
+        <!-- <div class="col-xs-12 col-sm-4"> -->
+        <div class="col-12 center-it">
+          <div class="booyah-box">
+            <%= image_tag place.photos.last.picture, class: 'index-photo img-fluid rounded' %>
+            <div class="clear"></div>
+            <br/>
+            <b><%= place.photos.last.caption %></b>
+          </div>
+        </div>
+       <!-- </div>  -->
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-sm-10 offset-sm-1">
+
+
+      <% if place.comments.present? %>
+
+         <div class="col-12">
+          <blockquote>
+            <% if place.comments.last.humanized_rating.present? %>
+              <b><%= place.comments.last.humanized_rating %></b> -
+            <% end %>
+            <%= place.comments.last.message %>
+            <small><%= place.comments.last.user.username %></small>
+          </blockquote>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+  <!-- <div class="col-lg-3 col-md-4 col-sm-6 place-index">
       <article class="card">
       <header class="title-header">
         <h3><%=place.name%></h3>
@@ -69,7 +119,7 @@
 
     </article>
   </div>
-
+ -->
 
 
 <% end %>
