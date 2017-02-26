@@ -52,10 +52,12 @@ class PlacesController < ApplicationController
     if current_user != @place.user
       return render text: 'Not Allowed', status: :forbidden
 
-    end
+    else
       @place.destroy
       flash[:success] = "Place was removed"
       redirect_to root_path
+
+    end
 
 
   end

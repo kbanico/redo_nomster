@@ -2,6 +2,8 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :place
 
+  validates :message, presence: true, length: {minimum: 3, maximum: 200}
+
   RATINGS = {
     "one star": "1_star",
     "two star": "2_star",
