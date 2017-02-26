@@ -126,5 +126,5 @@
 </div>
 
 <div class="text-center">
-  <%= will_paginate @places %>
+  <%= will_paginate @places, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>

@@ -245,7 +245,7 @@
     <% end %>
 </div>
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-12 col-md-10 offset-md-1">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" role="listbox">
@@ -281,7 +281,7 @@
     </div>
   </div>
 </div>
-
+ -->
 
 
 
@@ -330,7 +330,7 @@
 
             </div>
             <div class="user-name">
-                <%= photo.user.username %>
+                Photo By: <%= photo.user.username %>
             </div>
             <div class="time-ago">
                 added <%= time_ago_in_words(photo.created_at) %> ago
@@ -366,6 +366,12 @@
 <% end %>
 
 
+
+
+<%= simple_form_for @photo_comment, url: place_comment_to_photos_path(@place.photos) do |f| %>
+  <%= f.input :photo_comment %>
+  <%= f.submit "Add a Comment", class: 'btn btn-primary' %>
+<% end %>
 
 
 

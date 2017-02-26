@@ -62,5 +62,4 @@ gem "geocoder"
 gem "figaro"
 gem 'carrierwave', '~> 1.0'
 gem "fog"
-
-
+gem 'will_paginate-bootstrap4'
