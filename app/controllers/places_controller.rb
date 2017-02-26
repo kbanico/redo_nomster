@@ -19,7 +19,7 @@ class PlacesController < ApplicationController
     @place = current_user.places.create(place_params)
     if @place.valid?
       flash[:success] = "A new place was added"
-      redirect_to root_path
+      redirect_to place_path(@place)
     else
       render "new", status: :unprocessable_entity
     end

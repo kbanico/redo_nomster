@@ -1,84 +1,3 @@
-<!-- <div class="card">
-  <div class="row ">
-    <div class="col-md-4">
-
-
-      <% if @place.latitude.present? && @place.longitude.present? %>
-
-        <script>
-
-          function initMap() {
-            var myLatLng = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
-
-            var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 12,
-              center: myLatLng
-            });
-
-            var marker = new google.maps.Marker({
-              position: myLatLng,
-              map: map,
-              title: 'Hello World!'
-            });
-          }
-        </script>
-
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF2a9CpHY3BmC7iz2j8Oe3ivMig9U0EA0&callback=initMap">
-        </script>
-
-        <div id="map"></div>
-
-      <% end %>
-
-
-
-
-
-
-
-      </div>
-      <div class="col-md-6 px-3">
-        <div class="card-block px-3">
-          <h4 class="card-title"><%= @place.name %></h4>
-          <p class="card-text"><i><%= @place.address %></i></p>
-          <p class="card-text"><%= @place.description %></p>
-
-          <%= link_to "Back", :back, class: "btn btn-outline-secondary btn-sm" %>
-          <% if current_user && current_user == @place.user %>
-          <%= link_to "Edit", edit_place_path(@place), class: "btn btn-info btn-sm"  %>
-          <%= link_to "Delete", place_path(@place), method: :delete, data: {confirm: "Are you sure you want to delete this?"}, class: "btn btn-outline-danger btn-sm" %>
-          <% end %>
-
-          <br>
-          <% if @place.user%>
-          <small>Posted By: <%=@place.user.username %></small>
-          <% end %>
-
-
-
-
-        </div>
-
-
-      </div>
-
-
-      <div class="col-md-2">
-
-        <% if @place.categories.any? %>
-          <p class="lead">Categories</p>
-          <%= render @place.categories %>
-        <% end %>
-      </div>
-
-    </div>
-  </div>
- -->
-
-
-
-
 <div class="row">
  <div class="booyah-box col-12 col-md-10 offset-md-1">
   <h1 class="text-green"><%=  @place.name %></h1>
@@ -126,7 +45,7 @@
   <div class="pull-right">
     <% if current_user %>
       <button class="btn btn-success" data-toggle="modal" data-target="#myModal">
-        Add a comment
+        Add a rating
       </button>
       <button class="btn btn-success" data-toggle="modal" data-target="#photoModal">
         Add your photo
@@ -143,9 +62,7 @@
  </div>
 </div>
 
-
-
-
+<!-- Model for Photos -->
 <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -174,21 +91,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -223,7 +125,7 @@
 
 
 <div class="booyah-box col-12 col-md-10 offset-md-1">
-  <h3 class="text-center">Comments</h3>
+  <h3 class="text-center">Rating</h3>
   <div class="row">
     <% if @place.comments.present? %>
       <% @place.comments.each do |comment| %>
@@ -241,86 +143,9 @@
 
   </div>
     <br>
-     <p class="text-center">Currently No Comments Yet</p>
+     <p class="text-center">Currently No Ratings Yet</p>
     <% end %>
 </div>
-
-<!-- <div class="row">
-  <div class="col-12 col-md-10 offset-md-1">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner" role="listbox">
-
-        <% myPhoto = @place.photos.last(3) %>
-
-        <% myPhoto.each_with_index do |photo,i| %>
-          <% if i == 0 %>
-            <% is_active = "item active" %>
-          <% else %>
-            <% is_active = "item" %>
-          <% end %>
-
-
-          <div class="carousel-<%=is_active%>">
-            <%= image_tag photo.picture, class: "d-block img-fluid" %>
-            <div class="carousel-caption">
-              <%= photo.caption %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <% if myPhoto.size > 1 && myPhoto.size != 0 %>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-      <% end %>
-    </div>
-  </div>
-</div>
- -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<% @place.photos.each do |photo| %>
-  <%= image_tag photo.picture %>
-  <%= photo.caption %>
-  <% if photo.user %>
-    <b><%= photo.user.username %></b>
-  <% else %>
-    Unknown
-  <% end %>
-<% end %> -->
-
-
-
-
-
-
 
 <% @place.photos.each do |photo| %>
 <div class="posts-wrapper">
@@ -360,10 +185,8 @@
         </div>
     </div>
 </div>
-
-
-
 <% end %>
+
 
 
 
@@ -375,6 +198,20 @@
   <%= f.submit "Add a Comment", class: 'btn btn-primary' %>
 <% end %>
  -->
+
+
+
+<div class="row">
+  <div class="col-12 col-sm-10 offset-sm-1">
+    <%= render "disqus" %>
+  </div>
+</div>
+
+
+
+
+
+
 
 
 
