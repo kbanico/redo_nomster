@@ -12,94 +12,20 @@
 
   <h1 class="text-center display-4">Latest Places On Guam</h1>
   <br>
-<div class="row">
-  <div class="col-12 col-md-10 offset-md-1 text-center">
-
-
-  <%= link_to "Add a new hangout", new_place_path, class: "btn btn-info" %>
-
-    <%= link_to "Show All Places",places_path, class: "btn btn-info" %>
-  </div>
-
-  </div>
-</div>
 
 
 
+  <div class="row">
+   <div class="col-12 col-md-10 offset-md-1 text-center">
 
 
+   <%= link_to "Add a new hangout", new_place_path, class: "btn btn-info" %>
 
-<div class="row">
-<% @places.each do |place| %>
+     <%= link_to "Show All Places",places_path, class: "btn btn-info" %>
+   </div>
 
-  <div class="col-lg-3 col-md-4 col-sm-6 place-index">
-      <article class="card">
-      <header class="title-header">
-      <br>
-        <h3 class="text-center"><%=place.name%></h3>
-      </header>
-      <div class="card-block">
-        <div class="img-card">
-         <% if place.photos.present? %>
-         <%= link_to place_path(place) do %>
-          <%= image_tag place.photos.last.picture, class: "img-fluid" %>
-         <% end %>
-
-
-         <% end %>
-
-        </div>
-        <p class="tagline card-text text-xs-center"><%= place.description.truncate(50) %></p>
-        <p class="tagline card-text text-xs-center"><i><%= place.address %></i></p>
-        <%= link_to place_path(place), class: "btn btn-outline-info btn-sm" do %>
-          <i class="fa fa-eye"></i> Read More
-        <% end %>
-
-
-      <% if place.categories.any? %>
-      <br>
-        <p>Categories</p>
-        <%= render place.categories %>
-      <% end %>
-      <br>
-      <% if place.user%>
-        <small>Posted By: <%=place.user.username %></small>
-      <% end %>
-      <% if place.comments.present? %>
-      <br><small>Lastest Comment:</small> <br>
-
-        <% if place.comments.last.humanized_rating.present? %>
-          <b><%= place.comments.last.humanized_rating %></b> -
-        <% end %>
-        <%= place.comments.last.message.truncate(50) %>
-        <small><i><%= place.comments.last.user.username %></i></small>
-      <% end %>
-
-      </div>
-
-
-    </article>
-  </div>
-
-
-
-<% end %>
-</div>
-
-
-
-
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
+   </div>
+ </div>
 
 
 
@@ -117,10 +43,12 @@
                 <div class="card-image">
                   <% if place.photos.present? %>
                      <%= link_to place_path(place) do %>
-                      <%= image_tag place.photos.last.picture, class: "img-fluid" %>
+                      <%= image_tag place.photos.last.picture, class: "photo-100 img-fluid" %>
                      <% end %>
                     <% else %>
-                      <img class="img-fluid" src="http://lorempixel.com/555/300/nature">
+                       <%= link_to place_path(place) do %>
+                       <img class="photo-100 img-fluid" src="http://lorempixel.com/555/300/nature">
+                     <% end %>
                   <% end %>
 
 
@@ -159,10 +87,7 @@
                       <small><i><%= place.comments.last.user.username %></i></small>
                     <% end %>
                 </div><!-- card actions -->
-                <div class="card-reveal">
-                    <span class="card-title">Card Title</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div><!-- card reveal -->
+
             </div>
         </div>
 

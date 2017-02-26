@@ -1,11 +1,81 @@
 <h1><%= "Category: " + @category.name %></h1>
 <% @category_places.each do |category|%>
 
+   <div class="col-12 col-sm-10 offset-sm-1">
+        <div class="card">
+            <div class="card-image">
+              <% if category.photos.present? %>
+                 <%= link_to place_path(category) do %>
+                  <%= image_tag category.photos.last.picture, class: "photo-100 img-fluid" %>
+                 <% end %>
+                <% else %>
+                   <%= link_to place_path(category) do %>
+                   <img class="photo-100 img-fluid" src="http://lorempixel.com/555/300/nature">
+                 <% end %>
+              <% end %>
 
-<div class="card">
+
+
+            </div><!-- card image -->
+
+            <div class="card-content">
+                <span class="card-title"><%= category.name %></span> &nbsp;
+                <% if category.user%>
+                  <small>Posted By: <%=category.user.username %></small>
+                <% end %>
+
+              <% if category.categories.any? %>
+                <div class="pull-right">
+                  <p>Categories</p>
+                  <%= render category.categories %>
+                </div>
+              <% end %>
+
+
+
+            </div><!-- card content -->
+            <div class="card-action">
+                <%= category.description.truncate(50) %>
+                <br>
+                Location:
+                <%= category.address.truncate(50) %>
+
+                <% if category.comments.present? %>
+                <br><small>Lastest Comment:</small> <br>
+
+                  <% if category.comments.last.humanized_rating.present? %>
+                    <b><%= category.comments.last.humanized_rating %></b> -
+                  <% end %>
+                  <%= category.comments.last.message.truncate(50) %>
+                  <small><i><%= category.comments.last.user.username %></i></small>
+                <% end %>
+            </div><!-- card actions -->
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="card">
   <div class="row ">
+
     <div class="col-md-4">
         <img src="https://images.unsplash.com/photo-1428447207228-b396f310848b?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" class="w-100">
+
+
+
       </div>
       <div class="col-md-6 px-3">
         <div class="card-block px-3">
@@ -40,7 +110,7 @@
 
     </div>
   </div>
-</div>
+</div> -->
 
 
 
