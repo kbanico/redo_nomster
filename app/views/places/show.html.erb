@@ -177,47 +177,9 @@
               <% end %>
             <% end %>
 
-                <div class="caption-content">
-                    <div class="user-name">
-                        Photo By: <%= photo.user.username %>
-                    </div>
-                    -<%= photo.caption %>
-                </div>
-
-                <div class="comments" id="comments_<%=photo.id%>">
-                     <% if photo.comment_to_photos.present? %>
-                     <hr>
-                     <br>
-                     <p>Comments</p>
-                      <% photo.comment_to_photos.each do |comment| %>
-                        <!-- <h1><%=comment.photo_comment%></h1> -->
-
-                      <% if comment.user.present? %>
-                      <div class="user-name">
-                          <b><%= comment.user.username %></b>
-                      </div>
-                      <% end %>
-                      <div class="comment-content">
-                          <%= comment.photo_comment %>
-
-                      </div>
-                      <% if comment.user == current_user %>
-                          <%= link_to photo_comment_to_photo_path(photo,comment), method: :delete, data: { confirm: "Are you sure?" } do %>
-                              <span class= "delete-comment pull-right"><i class="fa fa-times" aria-hidden="true"></i></span>
-                          <% end %>
-                      <% end %>
-                      <br>
+        <%= render "comment", photo:photo %>
 
 
-
-
-                      <% end %>
-              <% end %>
-                </div>
-
-            </div>
-
-        </div>
         <div class="comment-like-form row">
             <div class="like-button col-sm-1">
                 <span class="glyphicon glyphicon-heart-empty"></span>
@@ -225,7 +187,7 @@
 
              <div class="comment-form col-11">
 
-                <%= form_for([photo, photo.comment_to_photos.new]) do |f| %>
+                <%= form_for([photo, photo.comment_to_photos.new], remote: true) do |f| %>
                     <%= f.text_field :photo_comment, placeholder: "Add a comment...", class: "comment_content", id: "comment_content_#{photo.id}" %>
                     <%= f.submit "create" %>
                 <% end %>
