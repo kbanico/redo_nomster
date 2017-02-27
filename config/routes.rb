@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   resources :places do
     resources :comments, only: :create
     resources :photos, only: :create
+    #resources :comment_to_photos, only: :create
+  end
+
+
+  resources :photos do
     resources :comment_to_photos, only: :create
   end
+
   resources :categories, except: [:destroy]
 end

@@ -182,6 +182,13 @@
                 <span class="glyphicon glyphicon-heart-empty"></span>
             </div>
 
+             <div class="comment-form col-sm-11">
+                <%= form_for([photo, photo.comment_to_photos.new], remote: true) do |f| %>
+                    <%= f.text_field :photo_comment, placeholder: "Add a comment...", class: "comment_content", id: "comment_content_#{photo.id}" %>
+                    <%= f.submit "create" %>
+                <% end %>
+            </div>
+
         </div>
     </div>
 </div>
@@ -190,14 +197,6 @@
 
 
 
-<!-- NOT WORKING -->
-
-<!--
-<%= simple_form_for @photo_comment, url: place_comment_to_photos_path(@place.photos) do |f| %>
-  <%= f.input :photo_comment %>
-  <%= f.submit "Add a Comment", class: 'btn btn-primary' %>
-<% end %>
- -->
 
 
 
