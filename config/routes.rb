@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 
   resources :photos do
-    resources :comment_to_photos, only: :create
+    resources :comment_to_photos, only: [:create,:destroy]
   end
 
   resources :categories, except: [:destroy]

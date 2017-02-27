@@ -122,12 +122,13 @@
 </div>
 
 
-
+ <% if @place.comments.present? %>
 
 <div class="booyah-box col-12 col-md-10 offset-md-1">
+
   <h3 class="text-center">Rating</h3>
   <div class="row">
-    <% if @place.comments.present? %>
+
       <% @place.comments.each do |comment| %>
         <div class="col-12 col-sm-6">
           <blockquote>
@@ -142,9 +143,9 @@
     <% else %>
 
   </div>
-    <br>
+   <!--  <br>
      <p class="text-center">Currently No Ratings Yet</p>
-    <% end %>
+    <% end %> -->
 </div>
 
 <% @place.photos.each do |photo| %>
@@ -154,24 +155,64 @@
             <div class="thumb-img">
 
             </div>
-            <div class="user-name">
-                Photo By: <%= photo.user.username %>
+            <div class="user-name pull-left">
+                <%= photo.user.username %>
             </div>
-            <div class="time-ago">
+            <div class="time-ago pull-right">
                 added <%= time_ago_in_words(photo.created_at) %> ago
             </div>
         </div>
         <div class="image center-block">
-            <%= image_tag photo.picture, class: "img-fluid" %>
+            <%= image_tag photo.picture, class: "photo-100 img-fluid" %>
 
         </div>
         <div class="post-bottom">
             <div class="caption">
+            <%if current_user%>
+              <% if current_user.id == photo.user.id %>
+                <%= link_to photo_path(photo), method: :delete, data: {confirm: 'Are you sure you want to delete this?'} do %>
+                    <i class="fa fa-trash-o pull-right" aria-hidden="true"></i>
+
+                <% end %>
+              <% end %>
+            <% end %>
+
                 <div class="caption-content">
                     <div class="user-name">
-                        <%= photo.user.username %>
+                        Photo By: <%= photo.user.username %>
                     </div>
-                    <%= photo.caption %>
+                    -<%= photo.caption %>
+                </div>
+
+                <div class="comments" id="comments_<%=photo.id%>">
+                     <% if photo.comment_to_photos.present? %>
+                     <hr>
+                     <br>
+                     <p>Comments</p>
+                      <% photo.comment_to_photos.each do |comment| %>
+                        <!-- <h1><%=comment.photo_comment%></h1> -->
+
+                      <% if comment.user.present? %>
+                      <div class="user-name">
+                          <b><%= comment.user.username %></b>
+                      </div>
+                      <% end %>
+                      <div class="comment-content">
+                          <%= comment.photo_comment %>
+
+                      </div>
+                      <% if comment.user == current_user %>
+                          <%= link_to photo_comment_to_photo_path(photo,comment), method: :delete, data: { confirm: "Are you sure?" } do %>
+                              <span class= "delete-comment pull-right"><i class="fa fa-times" aria-hidden="true"></i></span>
+                          <% end %>
+                      <% end %>
+                      <br>
+
+
+
+
+                      <% end %>
+              <% end %>
                 </div>
 
             </div>
@@ -182,8 +223,9 @@
                 <span class="glyphicon glyphicon-heart-empty"></span>
             </div>
 
-             <div class="comment-form col-sm-11">
-                <%= form_for([photo, photo.comment_to_photos.new], remote: true) do |f| %>
+             <div class="comment-form col-11">
+
+                <%= form_for([photo, photo.comment_to_photos.new]) do |f| %>
                     <%= f.text_field :photo_comment, placeholder: "Add a comment...", class: "comment_content", id: "comment_content_#{photo.id}" %>
                     <%= f.submit "create" %>
                 <% end %>
@@ -192,6 +234,8 @@
         </div>
     </div>
 </div>
+
+
 <% end %>
 
 

@@ -48,7 +48,9 @@
         <!-- <div class="col-xs-12 col-sm-4"> -->
         <div class="col-12 center-it">
           <div class="booyah-box">
+            <%= link_to place_path(place) do %>
             <%= image_tag place.photos.last.picture, class: 'index-photo img-fluid rounded' %>
+            <% end %>
             <div class="clear"></div>
             <br/>
             <b><%= place.photos.last.caption %></b>

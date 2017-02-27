@@ -27,7 +27,6 @@
     .user-name {
       font-weight: 500;
 } .time-ago {
-
          color: #A5A7AA;
       float: right;
     }
@@ -71,7 +70,6 @@
   line-height: 18px;
 }
 
-
 .comment_content {
   font-size: 15px;
   line-height: 18px;
@@ -103,6 +101,21 @@
   margin-top: 20px;
   margin-bottom: 40px;
 }
+
+
+
+.user-name.pull-left {
+    font-weight: 500;
+    margin-right: 0.3em;
+    color: #125688;
+    font-size: 15px;
+}
+
+.time-ago.pull-right {
+    color: #A5A7AA;
+}
+
+
 
 
 
