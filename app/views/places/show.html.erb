@@ -76,15 +76,22 @@
 
       <div class="modal-body">
 
+        <div class="form-group text-center">
+          <h4>Upload an image (this is required)</h4>
+          <br>
+          <%= f.input :picture, label: false, input_html: {onChange: 'loadFile(event)' } %>
 
-        <%= f.input :picture %>
-        <%= f.input :caption %>
+        </div>
+        <div class="form-group text-center">
+          <%= f.input :caption, label: false, placeholder: 'Add your caption' %>
+        </div>
+
 
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <%= f.submit "Add photo", class: "btn btn-primary" %>
+        <%= f.submit "Add photo", class: "btn btn-success btn-block" %>
       </div>
     <% end %>
 
@@ -148,6 +155,8 @@
     <% end %> -->
 </div>
 
+<div class="booyah-box col-12 col-md-10 offset-md-1">
+
 <% @place.photos.each do |photo| %>
 <div class="posts-wrapper">
     <div class="posts">
@@ -177,7 +186,15 @@
               <% end %>
             <% end %>
 
-        <%= render "comment", photo:photo %>
+         <div class="caption-content">
+           <div class="user-name">
+                        Photo By: <%= photo.user.username %>
+                    </div>
+                    <div class="comment-content">
+                    -<%= photo.caption %>
+                </div>
+        <%= render "comment_to_photos/comment", photo: photo %>
+        </div>
 
 
         <div class="comment-like-form row">
@@ -189,7 +206,7 @@
 
                 <%= form_for([photo, photo.comment_to_photos.new], remote: true) do |f| %>
                     <%= f.text_field :photo_comment, placeholder: "Add a comment...", class: "comment_content", id: "comment_content_#{photo.id}" %>
-                    <%= f.submit "create" %>
+                   <!--  <%= f.submit "create" %> -->
                 <% end %>
             </div>
 
@@ -200,10 +217,10 @@
 
 <% end %>
 
+</div>
 
 
-
-
+<!--
 
 
 <div class="row">
@@ -211,7 +228,7 @@
     <%= render "disqus" %>
   </div>
 </div>
-
+ -->
 
 
 

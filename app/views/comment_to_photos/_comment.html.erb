@@ -1,0 +1,35 @@
+
+
+
+                <div class="comments" id="comments_<%=photo.id%>">
+                     <% if photo.comment_to_photos.present? %>
+                     <hr>
+                     <br>
+                     <p class="text-center">Comments</p>
+                      <% photo.comment_to_photos.each do |comment| %>
+                        <!-- <h1><%=comment.photo_comment%></h1> -->
+
+                      <% if comment.user.present? %>
+                      <div class="user-name">
+                          <b><%= comment.user.username %></b>
+                      </div>
+                      <% end %>
+                      <div class="comment-content">
+                          <%= comment.photo_comment %>
+
+                      </div>
+                      <% if comment.user == current_user %>
+                          <%= link_to photo_comment_to_photo_path(photo,comment), method: :delete, data: { confirm: "Are you sure?" }, remote: true do %>
+                              <span class= "delete-comment pull-right"><i class="fa fa-times" aria-hidden="true"></i></span>
+                          <% end %>
+                      <% end %>
+                      <br>
+
+
+
+
+                      <% end %>
+              <% end %>
+                </div>
+
+

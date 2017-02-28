@@ -21,11 +21,17 @@ wrong."
   def destroy
     #@photo = Photo.find(params[:photo_id])
     #@comment = @photo.comment_to_photos.find(params[:id])
+    @photo = Photo.find(params[:photo_id])
     @comment = CommentToPhoto.find(params[:id])
+    if @comment.user_id == current_user.id
+      @comment.destroy
+      respond_to do |format|
+        #flash[:info] = "Comment Deleted"
+        format.html{redirect_to(:back)}
+        format.js
+      end
 
-    @comment.destroy
-    flash[:info] = "Comment Deleted"
-    redirect_to(:back)
+      end
   end
 
   private
