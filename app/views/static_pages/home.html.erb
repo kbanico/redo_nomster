@@ -38,7 +38,7 @@
 
 
 
-        <div class="col-12 col-sm-10 offset-sm-1">
+        <div class="col-12 col-sm-6 offset-sm-3">
             <div class="card">
                 <div class="card-image">
                   <% if place.photos.present? %>
@@ -95,4 +95,16 @@
 <% end %>
   </div>
 
+<div class="row">
+  <div class="col-4 offset-4">
+    <%= link_to places_path do%>
+      <div class="basicBox">
+        View More
+        <svg width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
+          <rect x='0' y='0' fill='none' width='130' height='65'/>
+        </svg>
+      </div>
+    <% end %>
+  </div>
+</div>
 
