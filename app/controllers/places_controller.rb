@@ -4,7 +4,18 @@ class PlacesController < ApplicationController
 
 
   def index
-    @places = Place.order("created_at DESC").all.paginate(:page => params[:page], :per_page =>6)
+    #@places = Place.order("created_at DESC").all.paginate(:page => params[:page], :per_page =>6)
+
+
+    @places = Place.all.order('created_at DESC').page params[:page]
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+
+    # end
+
+
+
   end
 
   def new

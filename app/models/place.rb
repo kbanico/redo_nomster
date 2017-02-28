@@ -5,7 +5,7 @@ class Place < ApplicationRecord
 
   has_many :place_categories
   has_many :categories, through: :place_categories
-  self.per_page = 10
+  #self.per_page = 10
   validates :name, presence: true, length: {minimum: 3, maximum: 30}
   validates :description, presence: true, length: {minimum: 10, maximum: 300}
   validates :address, presence: true, length: {minimum: 5, maximum: 100}
