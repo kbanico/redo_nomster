@@ -40,6 +40,8 @@ class PlacesController < ApplicationController
     @comment = Comment.new
     @photo = Photo.new
     @photo_comment = CommentToPhoto.new
+
+
   end
 
   def edit

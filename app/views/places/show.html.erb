@@ -154,6 +154,7 @@
     <% end %>
 </div>
 
+<% if @place.photos.present? %>
 <div class="booyah-box col-12 col-md-10 offset-md-1">
 
 <% @place.photos.each do |photo| %>
@@ -216,9 +217,10 @@
 
 <% end %>
 
+    </div>
+  </div>
 </div>
-
-
+<% end %>
 <!--
 
 
