@@ -5,6 +5,16 @@
                      <% if photo.comment_to_photos.present? %>
                      <hr>
                      <br>
+                     <div class="paginator" id="comments-paginator-<%=photo.id%>">
+                       <% unless photo.comment_to_photos.count <=4 %>
+                        <%= link_to "view all #{photo.comment_to_photos.count} comments", place_path(photo.place),remote: true, class: "more-comments", data:{photo_id: "#{photo.id}", type: "html"} %>
+                        <% comments = photo.comment_to_photos.last(4) %>
+                        <% comments.each do |comment| %>
+                          <h1><%=comment.photo_comment%></h1>
+                        <% end %>
+                        <% end %>
+
+                     </div>
                      <p class="text-center">Comments</p>
                       <% photo.comment_to_photos.each do |comment| %>
                         <!-- <h1><%=comment.photo_comment%></h1> -->
