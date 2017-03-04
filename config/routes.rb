@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'profiles/show'
+
   devise_for :users, controllers: {registrations: 'registrations'}
   root "static_pages#home"
   resources :places do
@@ -9,8 +11,9 @@ Rails.application.routes.draw do
 
 
   resources :photos do
-    resources :comment_to_photos, only: [:create,:destroy]
+    resources :comment_to_photos, only: [:index, :create,:destroy]
   end
 
   resources :categories, except: [:destroy]
+  get "user_name", to: "profiles#show", as: :profile
 end
