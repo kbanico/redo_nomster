@@ -2,12 +2,12 @@
 
 
                 <div class="comments" id="comments_<%=photo.id%>">
-                     <% if photo.comment_to_photos.present? %>
-                     <hr>
-                     <br>
-                     <p class="text-center">Comments</p>
-                      <% photo.comment_to_photos.each do |comment| %>
-                        <!-- <h1><%=comment.photo_comment%></h1> -->
+                     <% page = @page || 1 %>
+                     <!-- <% if photo.comment_to_photos.present? %> -->
+                     <!-- <hr> -->
+                     <!-- <br> -->
+                     <!-- <p class="text-center">Comments</p> -->
+                      <% photo.comment_to_photos.page(page).per(1).each do |comment| %>
 
                       <% if comment.user.present? %>
                       <div class="user-name">
@@ -19,17 +19,24 @@
 
                       </div>
                       <% if comment.user == current_user %>
+
                           <%= link_to photo_comment_to_photo_path(photo,comment), method: :delete, data: { confirm: "Are you sure?" }, remote: true do %>
                               <span class= "delete-comment pull-right"><i class="fa fa-times" aria-hidden="true"></i></span>
                           <% end %>
                       <% end %>
                       <br>
 
-
-
-
                       <% end %>
-              <% end %>
+                        <% if photo.comment_to_photos.page(0).last_page? %>
+                          END
+                        <% else %>
+                           <div id="load_more_comment">
+                           <%= link_to "Load More", photo_comment_to_photos_path(photo, page: page + 1), remote: true %>
+                        </div>
+
+                        <% end %>
+
+              <!-- <% end %> -->
                 </div>
 
 

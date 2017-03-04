@@ -188,12 +188,20 @@
 
          <div class="caption-content">
            <div class="user-name">
-                        Photo By: <%= photo.user.username %>
-                    </div>
-                    <div class="comment-content">
-                    -<%= photo.caption %>
-                </div>
-        <%= render "comment_to_photos/comment", photo: photo %>
+              Photo By: <%= photo.user.username %>
+           </div>
+           <div class="comment-content">
+              -<%= photo.caption %>
+
+            </div>
+          <!-- <% page = @page || 1 %> -->
+            <% if photo.comment_to_photos.present? %>
+              <hr>
+              <br>
+              <p class="text-center">Comments</p>
+              <%= render "comment_to_photos/comment", photo: photo %>
+             <!--   <%= link_to "Load More", photo_comment_to_photos_path(photo.id, page: page + 1), remote: true%> -->
+            <% end %>
         </div>
 
 

@@ -1,0 +1,4 @@
+$("#load_more_comment").remove();
+$("#comments_<%=@photo.id%>").append("<%=j render 'comment_to_photos/comment', photo: @photo%>");
+$("#comment_content_<%=@photo.id %>").val('')
+// if ($('#load_more_comment').length) { alert("end") }
