@@ -1,20 +1,5 @@
 <% @places.each do |place| %>
-
-
-
-
-
-
-
-
 <div class="booyah-box col-12 col-sm-10 offset-sm-1">
-
-
-
-
-
-
-
   <div class="row">
     <div class="col-12 col-sm-6">
       <h1><%= link_to place.name, place_path(place) %></h1>
@@ -56,6 +41,15 @@
           </div>
         </div>
        <!-- </div>  -->
+       <% else %>
+         <div class="col-12 center-it">
+            <div class="booyah-box">
+              <%= link_to place_path(place) do %>
+              <%= image_tag "image-filler.jpg", class: 'index-photo img-fluid rounded' %>
+              <% end %>
+            </div>
+         </div>
+
       <% end %>
     </div>
   </div>

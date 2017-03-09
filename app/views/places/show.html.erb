@@ -210,6 +210,7 @@
                 <span class="glyphicon glyphicon-heart-empty"></span>
             </div>
 
+            <% if user_signed_in? %>
              <div class="comment-form col-11">
 
                 <%= form_for([photo, photo.comment_to_photos.new], remote: true) do |f| %>
@@ -217,6 +218,7 @@
                    <!--  <%= f.submit "create" %> -->
                 <% end %>
             </div>
+            <% end %>
 
         </div>
     </div>
@@ -228,6 +230,8 @@
     </div>
   </div>
 </div>
+
+
 <% end %>
 <!--
 
