@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     #resources :comment_to_photos, only: :create
   end
 
+  resources :messages
+
 
   resources :photos do
     resources :comment_to_photos, only: [:index,:create,:destroy]

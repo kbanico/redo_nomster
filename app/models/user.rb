@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :comments
   has_many :photos
   has_many :comment_to_photos
+  has_many :messages
 end
