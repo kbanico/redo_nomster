@@ -1,7 +1,13 @@
 <h1>Index page</h1>
+<div id="messages">
+  <div id="messages-table">
 <% @messages.each do |message| %>
+
   <%= render "messages/messages", message: message %>
+
 <% end %>
+  </div>
+</div>
 <%= simple_form_for(Message.new, remote: true) do |f| %>
   <%= f.input :content %>
   <%= f.submit "Send" %>

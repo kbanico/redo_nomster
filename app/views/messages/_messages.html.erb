@@ -1,2 +1,9 @@
-username: <%= message.user.username %>
-message: <%= message.content %>
+
+    <% if @messages.any? %>
+      <%= render "messages/message", message: message %>
+    <% end %>
+
+
+
+
+

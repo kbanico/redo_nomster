@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, except: [:destroy]
+  mount ActionCable.server, at: "/cable"
 end
+
+
