@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  include ActionView::Helpers::DateHelper
   before_action :authenticate_user!
   def index
 
@@ -12,7 +13,8 @@ class MessagesController < ApplicationController
     if @message.save
       ActionCable.server.broadcast 'room_channel',
                                        content: @message.content,
-                                       username: @message.user.username
+                                       username: @message.user.username,
+                                       time: time_ago_in_words(@message.created_at)
                                       # message: render_message(@message)
     end
   end

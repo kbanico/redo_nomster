@@ -1,14 +1,33 @@
-<h1>Index page</h1>
+<h1 class="display-4 text-center">HafaChat</h1> <br>
 <div id="messages">
   <div id="messages-table">
+
+
+   <div class="container">
+      <div class="row form-group">
+        <div class="col-12 offset-md-2 col-md-8">
+            <div id="message-content" class="panel panel-primary">
+                <div class="panel-heading">
+                  <i class="fa fa-comment-o" aria-hidden="true"></i> Comments
+
+                </div>
 <% @messages.each do |message| %>
 
   <%= render "messages/messages", message: message %>
 
 <% end %>
+
+
   </div>
-</div>
-<%= simple_form_for(Message.new, remote: true) do |f| %>
+<!--<%= simple_form_for(Message.new, remote: true) do |f| %>
   <%= f.input :content %>
   <%= f.submit "Send" %>
-<% end %>
+<% end %>-->
+
+<div class="panel-footer clearfix">
+  <%= simple_form_for(Message.new, remote: true) do |f| %>
+    <%= f.input :content, placeholder: "Say something...", autofocus: true, label: false, input_html: {class: "form-control", :rows => 1} %>
+    <%= f.submit "Send", class: "btn btn-info btn-lg btn-block" %>
+
+  <% end %>
+</div>
