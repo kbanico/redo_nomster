@@ -28,10 +28,9 @@
 
                       <% end %>
                         <% if photo.comment_to_photos.page(1).last_page? %>
-                          END
                         <% else %>
-                           <div id="load_more_comment">
-                           <%= link_to "Load More", photo_comment_to_photos_path(photo, page: page + 1), remote: true, id: "load_more_comment" %>
+                           <div id="load_more_comment" class="text-center">
+                           <%= link_to "Load More", photo_comment_to_photos_path(photo, page: page + 1), remote: true, id: "load_more_comment", class:"btn btn-secondary btn-sm" %>
                         </div>
 
                         <% end %>
