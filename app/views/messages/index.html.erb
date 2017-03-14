@@ -11,11 +11,14 @@
                   <i class="fa fa-comment-o" aria-hidden="true"></i> Comments
 
                 </div>
-<% @messages.each do |message| %>
 
-  <%= render "messages/messages", message: message %>
+<div id="chat-messages">
+  <% @messages.each do |message| %>
 
-<% end %>
+    <%= render "messages/messages", message: message %>
+
+  <% end %>
+</div>
 
 
   </div>

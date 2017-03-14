@@ -1,0 +1,65 @@
+<!-- Model for Photos -->
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add your photo</h4>
+      </div>
+    <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
+
+      <div class="modal-body">
+
+        <div class="form-group text-center">
+          <h4>Upload an image (this is required)</h4>
+          <br>
+          <%= f.input :picture, label: false, input_html: {onChange: 'loadFile(event)' } %>
+
+        </div>
+        <div class="form-group text-center">
+          <%= f.input :caption, label: false, placeholder: 'Add your caption' %>
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit "Add photo", class: "btn btn-success btn-block" %>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add a comment</h4>
+      </div>
+    <%= simple_form_for @comment, url: place_comments_path(@place), validate: true do |f| %>
+
+      <div class="modal-body">
+
+        <%= f.input :message %>
+        <%= f.input :rating, as: :select, collection: Comment::RATINGS %>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit "Add a Comment", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+</div>
