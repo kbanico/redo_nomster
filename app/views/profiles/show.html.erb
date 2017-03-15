@@ -1,5 +1,12 @@
-<% @places.each do |place| %>
-<div class="booyah-box col-12 col-sm-10 offset-sm-1">
+<div class="username text-center booyah-box col-12 col-sm-10 offset-sm-1">
+  <h1 class="display-6"><%= @user.username %>'s added places</h1>
+
+  <br>
+
+  <% @places.each do |place| %>
+  <% if place.present? %>
+
+  <div class="booyah-box col-12 col-sm-10 offset-sm-1">
   <div class="row">
     <div class="col-12 col-sm-6">
       <h1><%= link_to place.name, place_path(place) %></h1>
@@ -76,47 +83,24 @@
 
 </div>
 
-  <!-- <div class="col-lg-3 col-md-4 col-sm-6 place-index">
-      <article class="card">
-      <header class="title-header">
-        <h3><%=place.name%></h3>
-      </header>
-      <div class="card-block">
-        <div class="img-card">
-          <img src="https://placehold.it/300x250" alt="place" class="w-100" />
-        </div>
-        <p class="tagline card-text text-xs-center"><%= place.description %></p>
-        <p class="tagline card-text text-xs-center"><%= place.address %></p>
-        <%= link_to place_path(place), class: "btn btn-outline-info btn-sm" do %>
-          <i class="fa fa-eye"></i> Read More
-        <% end %>
+
+  <% else %>
+    <p>No Current Added Places</p>
+  <%end%>
+  <% end %>
+</div>
 
 
-      <% if place.categories.any? %>
-      <br>
-        <p>Categories</p>
-        <%= render place.categories %>
-      <% end %>
-      <br>
-      <% if place.user%>
-        <small>Posted By: <%=place.user.username %></small>
-      <% end %>
-      <% if place.comments.present? %>
-      <br><small>Lastest Comment:</small> <br>
+<div class="username text-center booyah-box col-12 col-sm-10 offset-sm-1">
+  <h1 class="display-6"><%= @user.username %>'s photos</h1>
 
-        <% if place.comments.last.humanized_rating.present? %>
-          <b><%= place.comments.last.humanized_rating %></b> -
-        <% end %>
-        <%= place.comments.last.message %>
-        <small><%= place.comments.last.user.username %></small>
-      <% end %>
+  <br>
 
-      </div>
+<% @photos.each do |photo| %>
+  <% if photo.present? %>
+    <%= render "places/photos", photo: photo %>
+  <% else %>
+        <p>No Photos Currenlty Uploaded</p>
 
-
-    </article>
-  </div>
- -->
-
-
+  <% end %>
 <% end %>

@@ -102,7 +102,7 @@
 
             </div>
             <div class="user-name pull-left">
-                <%= photo.user.username %>
+                <%= link_to photo.user.username, profile_path(photo.user.username) %>
             </div>
             <div class="time-ago pull-right">
                 added <%= time_ago_in_words(photo.created_at) %> ago

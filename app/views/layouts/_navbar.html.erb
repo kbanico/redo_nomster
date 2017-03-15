@@ -59,7 +59,7 @@
         </li>
 
         <li class="nav-item"><small class="nav-link" style="margin-top:5px;">
-        <%= link_to edit_user_registration_path(current_user), class: "text-info" do %>
+        <%= link_to edit_profile_path(current_user.username), class: "text-info" do %>
         <i class="fa fa-user-circle" aria-hidden="true"></i>
             Welcome <%=current_user.username %></small>
         <% end %>
