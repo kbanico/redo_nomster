@@ -4,7 +4,7 @@
 
     <% if comment.user.present? %>
       <div class="user-name">
-        <b><%= comment.user.username %></b>
+        <b><%= link_to comment.user.username, profile_path(comment.user.username) %></b>
       </div>
     <% end %>
     <div class="comment-content">

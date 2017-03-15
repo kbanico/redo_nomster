@@ -1,4 +1,37 @@
 <div class="username text-center booyah-box col-12 col-sm-10 offset-sm-1">
+
+  <div class="posts-wrapper">
+    <div class="row profile-header">
+      <div class="col-sm-6">
+        <div class="rounded-circle">
+          <%= profile_avatar_select(@user) %>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="user-name-and-follow">
+          <h3 class="profile-user-name">
+            <%= @user.username %>
+          </h3>
+          <span>
+            <% if @user === current_user %>
+              <%= link_to "Edit Profile", edit_profile_path(@user.username), class: "btn edit-button" %>
+            <% end %>
+          </span>
+        </div>
+        <p class="profile-bio">
+          <%= @user.bio %>
+        </p>
+        <div class="user-statistics">
+          <p><%= pluralize @user.places.count, 'place' %></p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
   <h1 class="display-6"><%= @user.username %>'s added places</h1>
 
   <br>
