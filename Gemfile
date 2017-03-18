@@ -64,4 +64,4 @@ gem 'carrierwave', '~> 1.0'
 gem "fog"
 #gem 'will_paginate-bootstrap4'
 gem  'kaminari'
-
+gem 'redis',                   '3.3.1'
