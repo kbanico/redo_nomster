@@ -34,3 +34,27 @@
 
   <% end %>
 </div>
+
+
+
+
+
+
+<script>
+<% if current_user.avatar.present? %>
+  user = '<%= current_user.avatar%>'
+<% else %>
+  user = "https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png"
+<% end %>
+
+
+console.log(user)
+</script>
+
+
+
+
+
+
+
+
