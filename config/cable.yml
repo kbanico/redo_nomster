@@ -6,4 +6,4 @@ test:
 
 production:
   adapter: redis
-  url: redis://redis-13019.c12.us-east-1-4.ec2.cloud.redislabs.com:13019
+  url: redis://redistogo:3d69973bd55903f76da537689123d1b7@koi.redistogo.com:11865/
