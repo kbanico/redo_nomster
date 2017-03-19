@@ -34,10 +34,11 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
                   '</ul>' +
               '</div>'
+      scroll_bottom()
 
- $(document).on 'turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   submit_message()
-
+  scroll_bottom()
 
 
 
@@ -48,3 +49,5 @@ submit_message = () ->
       event.target.value = ""
       event.preventDefault()
 
+scroll_bottom = () ->
+  $('#messages').scrollTop($('#messages')[0].scrollHeight)
