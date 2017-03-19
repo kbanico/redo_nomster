@@ -34,7 +34,6 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
                   '</ul>' +
               '</div>'
-      scroll_bottom()
 
 $(document).on 'turbolinks:load', ->
   submit_message()

@@ -2,14 +2,14 @@ class MessagesController < ApplicationController
   include ActionView::Helpers::DateHelper
   before_action :authenticate_user!
   def index
-
+    @message  = current_user.messages.build
     @messages = Message.for_display
   end
 
   def create
 
-    @message = Message.new
-    @message = current_user.messages.create(message_params)
+
+    @message = current_user.messages.build(message_params)
     if @message.save
       ActionCable.server.broadcast 'room_channel',
                                        content: @message.content,
