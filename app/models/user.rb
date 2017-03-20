@@ -13,5 +13,5 @@ class User < ApplicationRecord
   has_many :comment_to_photos
   has_many :messages
 
-  #mount_uploader :avatar, PictureUploader
+  mount_uploader :avatar, PictureUploader
 end
