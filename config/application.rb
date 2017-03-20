@@ -20,7 +20,5 @@ module Nomster3
 
     # Precompile additional assets
     config.assets.precompile += %w( .svg .eot .woff .ttf )
-    config.autoload_paths += "#{Rails.root}/app/uploaders"
-
   end
 end
